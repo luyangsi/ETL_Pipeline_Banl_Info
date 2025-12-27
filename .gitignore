@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+outputs/
+*.db
+*.sqlite
+*.log
+etl_project_log.txt
+code_log.txt
+
+.DS_Store

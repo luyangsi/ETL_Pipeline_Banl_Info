@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install pytest
+
+      - name: Test
+        run: pytest -q
+
+      - name: CLI smoke test
+        run: |
+          mkdir -p outputs
+          largest-banks-etl \
+            --url "https://en.wikipedia.org/wiki/List_of_largest_banks" \
+            --rates "data/exchange_rates.csv" \
+            --out-csv "outputs/largest_banks.csv" \
+            --db "outputs/largest_banks.db" \
+            --table "Largest_banks" \
+            --log "etl_project_log.txt"
+

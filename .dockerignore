@@ -1,0 +1,13 @@
+.venv
+venv
+__pycache__
+.pytest_cache
+.git
+.gitignore
+outputs
+*.db
+*.sqlite
+*.log
+etl_project_log.txt
+code_log.txt
+.DS_Store
